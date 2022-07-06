@@ -8,110 +8,134 @@
  * @format
  */
 
-import React, {type PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React from 'react';
+import {Platform, Text} from 'react-native';
 
 import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  openDatabase,
+  enablePromise,
+  Location,
+  SQLiteDatabase,
+} from 'react-native-sqlite-storage';
+import {sql} from '@trong-orm/query-builder';
+import {
+  IMigration,
+  runQuery,
+  IInitDbClientConfig,
+  migrationsPlugin,
+  reactiveQueriesPlugin,
+  IDbBackend,
+  IQuery,
+  IQueryResult,
+  DbProvider,
+  EnsureDbLoaded,
+} from '@trong-orm/react';
+import {Screen} from './components/Screen';
 
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+enablePromise(true);
+
+const createNotesTable: IMigration = {
+  up: async db => {
+    const query = sql`
+      CREATE TABLE notes (
+        id varchar(20) PRIMARY KEY NOT NULL,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL
+      );
+      CREATE INDEX IF NOT EXISTS idx_note_title ON notes(title);
+    `;
+
+    await runQuery(db, query);
+  },
+  id: 1653668686076, // id should be uniq
+  name: 'createNotesTable',
+};
+
+const reactNativeBackend =
+  (initOpts: {
+    name: (dbName: string) => string;
+    location?: Location;
+  }): IDbBackend =>
+  ({dbName, stopped$}) => {
+    let db: SQLiteDatabase | undefined;
+
+    return {
+      async initialize() {
+        db = await openDatabase({
+          name: initOpts.name(dbName),
+          location: initOpts.location,
+        });
+
+        stopped$.subscribe(() => {
+          if (!db) {
+            return;
+          }
+
+          db.close();
+        });
+      },
+      async execQueries(
+        queries: IQuery[],
+        opts: {
+          log: {
+            suppress: boolean;
+            transactionId?: string;
+          };
+        },
+      ): Promise<IQueryResult[]> {
+        if (!db) {
+          throw new Error(
+            `Failed to run queries: ${queries
+              .map(q => q.text)
+              .join(' ')}, db not initialized`,
+          );
+        }
+
+        const result: IQueryResult[] = [];
+
+        for (const q of queries) {
+          const startTime = new Date().getTime();
+
+          result.push((await db.executeSql(q.text, q.values))[0].rows.raw());
+
+          const end = new Date().getTime();
+
+          if (!opts.log.suppress) {
+            console.info(
+              `[${dbName}]${
+                opts.log.transactionId
+                  ? `[tr_id=${opts.log.transactionId.slice(0, 6)}]`
+                  : ''
+              } ` +
+                queries.map(it => it.text).join(' ') +
+                ' Time: ' +
+                ((end - startTime) / 1000).toFixed(4),
+            );
+          }
+        }
+
+        return result;
+      },
+    };
+  };
+
+const config: IInitDbClientConfig = {
+  dbName: 'trong-db',
+  dbBackend: reactNativeBackend({name: dbName => `${dbName}.db`}),
+  plugins: [
+    migrationsPlugin({migrations: [createNotesTable]}),
+    reactiveQueriesPlugin({webMultiTabSupport: Platform.OS === 'web'}),
+  ],
 };
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <DbProvider config={config}>
+      <EnsureDbLoaded fallback={<Text>Loading db...</Text>}>
+        <Screen />
+      </EnsureDbLoaded>
+    </DbProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
