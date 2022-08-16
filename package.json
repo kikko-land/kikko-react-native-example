@@ -13,6 +13,7 @@
   "dependencies": {
     "@kikko-land/query-builder": "^0.1.1",
     "@kikko-land/react": "^0.2.0",
+    "@kikko-land/react-native-backend": "^0.2.0",
     "lorem-ipsum": "^2.0.8",
     "react": "18.0.0",
     "react-native": "0.69.1",

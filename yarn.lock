@@ -1079,6 +1079,15 @@
   dependencies:
     "@kikko-land/sql" "^0.1.1"
 
+"@kikko-land/react-native-backend@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kikko-land/react-native-backend/-/react-native-backend-0.2.0.tgz#5d901b62cbb27d42eff5876b33acf17034d1c8ab"
+  integrity sha512-yAyNlt9JxYI+D/GP1uweC0wnlmrEf4z2kCrqR0UWlFnzfeLUBfHmkmWLVd1h3T4paFXzN/9a/PgzuEHaTbnHAg==
+  dependencies:
+    "@kikko-land/kikko" "^0.2.0"
+    "@kikko-land/sql" "^0.1.1"
+    react-native-sqlite-storage "^6.0.1"
+
 "@kikko-land/react-queries-hooks@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@kikko-land/react-queries-hooks/-/react-queries-hooks-0.2.0.tgz#64a38b2733e1d3706444508bb1aae29a25e50be7"

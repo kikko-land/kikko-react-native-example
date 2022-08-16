@@ -11,12 +11,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-import {
-  openDatabase,
-  enablePromise,
-  Location,
-  SQLiteDatabase,
-} from 'react-native-sqlite-storage';
+import {enablePromise} from 'react-native-sqlite-storage';
 import {sql} from '@kikko-land/query-builder';
 import {
   IMigration,
@@ -24,12 +19,10 @@ import {
   IInitDbClientConfig,
   migrationsPlugin,
   reactiveQueriesPlugin,
-  IDbBackend,
-  IQuery,
-  IQueryResult,
   DbProvider,
   EnsureDbLoaded,
 } from '@kikko-land/react';
+import {reactNativeBackend} from '@kikko-land/react-native-backend';
 import {Screen} from './components/Screen';
 
 enablePromise(true);
@@ -51,80 +44,12 @@ const createNotesTable: IMigration = {
   name: 'createNotesTable',
 };
 
-const reactNativeBackend =
-  (initOpts: {
-    name: (dbName: string) => string;
-    location?: Location;
-  }): IDbBackend =>
-  ({dbName, stopped$}) => {
-    let db: SQLiteDatabase | undefined;
-
-    return {
-      async initialize() {
-        db = await openDatabase({
-          name: initOpts.name(dbName),
-          location: initOpts.location,
-        });
-
-        stopped$.subscribe(() => {
-          if (!db) {
-            return;
-          }
-
-          db.close();
-        });
-      },
-      async execQueries(
-        queries: IQuery[],
-        opts: {
-          log: {
-            suppress: boolean;
-            transactionId?: string;
-          };
-        },
-      ): Promise<IQueryResult[]> {
-        if (!db) {
-          throw new Error(
-            `Failed to run queries: ${queries
-              .map(q => q.text)
-              .join(' ')}, db not initialized`,
-          );
-        }
-
-        const result: IQueryResult[] = [];
-
-        for (const q of queries) {
-          const startTime = new Date().getTime();
-
-          result.push((await db.executeSql(q.text, q.values))[0].rows.raw());
-
-          const end = new Date().getTime();
-
-          if (!opts.log.suppress) {
-            console.info(
-              `[${dbName}]${
-                opts.log.transactionId
-                  ? `[tr_id=${opts.log.transactionId.slice(0, 6)}]`
-                  : ''
-              } ` +
-                queries.map(it => it.text).join(' ') +
-                ' Time: ' +
-                ((end - startTime) / 1000).toFixed(4),
-            );
-          }
-        }
-
-        return result;
-      },
-    };
-  };
-
 const config: IInitDbClientConfig = {
   dbName: 'trong-db',
   dbBackend: reactNativeBackend({name: dbName => `${dbName}.db`}),
   plugins: [
     migrationsPlugin({migrations: [createNotesTable]}),
-    reactiveQueriesPlugin(),
+    reactiveQueriesPlugin({webMultiTabSupport: false}),
   ],
 };
 
