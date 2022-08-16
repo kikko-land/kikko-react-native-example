@@ -1,5 +1,5 @@
 {
-  "name": "trongreactexample",
+  "name": "kikkoreactexample",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@trong-orm/query-builder": "^1.1.4",
-    "@trong-orm/react": "^1.1.4",
+    "@kikko-land/query-builder": "^0.1.1",
+    "@kikko-land/react": "^0.2.0",
     "lorem-ipsum": "^2.0.8",
     "react": "18.0.0",
     "react-native": "0.69.1",

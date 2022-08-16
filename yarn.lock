@@ -1054,6 +1054,68 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kikko-land/kikko@^0.2.0":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@kikko-land/kikko/-/kikko-0.2.1.tgz#c903c9b56bdf1efc5de7159f5b561ced8c1faa01"
+  integrity sha512-41MDwe49WmFtT/UDx4D8mQDNkCvArbQwu9Kw4bFRsqvcbSH+ivcQfOGWh8ZANeUGU95n2xVK9HctR4RpmZJj8w==
+  dependencies:
+    "@kikko-land/query-builder" "^0.1.1"
+    "@kikko-land/sql" "^0.1.1"
+    rxjs "^7.5.5"
+    ts-essentials "^9.1.2"
+
+"@kikko-land/migrations-plugin@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kikko-land/migrations-plugin/-/migrations-plugin-0.2.0.tgz#313015f1190f281952b42633825de4976cf8b352"
+  integrity sha512-qE4WVXBpBRX+AH30K2G007Czr8LIEQrbgiFH8HPcUJqdadAxjmKawEKOs0eTopndsYbRVa20xaESJA7H06yhuQ==
+  dependencies:
+    "@kikko-land/kikko" "^0.2.0"
+    "@kikko-land/sql" "^0.1.1"
+
+"@kikko-land/query-builder@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@kikko-land/query-builder/-/query-builder-0.1.1.tgz#a8c192ea07a4fdf1461f43bbaec837fa6b5d4db0"
+  integrity sha512-RvGbv3oG7xmSg/WgsHJuoywAeXzD/SPNTBLppdzW9NFWV9cr8yIWBH2B7zruey97BRKpS8PfIpWIIy23b28UYQ==
+  dependencies:
+    "@kikko-land/sql" "^0.1.1"
+
+"@kikko-land/react-queries-hooks@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kikko-land/react-queries-hooks/-/react-queries-hooks-0.2.0.tgz#64a38b2733e1d3706444508bb1aae29a25e50be7"
+  integrity sha512-0JVyYtbASXvfomaEbCRWD2MU94r1vVcWNhCCmQov8sb74/vvghHOOMTjj0ptVLtCU2r1nAwJxNkMdzWirVfT0Q==
+  dependencies:
+    "@kikko-land/kikko" "^0.2.0"
+    "@kikko-land/reactive-queries-plugin" "^0.2.0"
+    "@kikko-land/sql" "^0.1.1"
+    rxjs "^7.5.5"
+
+"@kikko-land/react@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kikko-land/react/-/react-0.2.0.tgz#6188d50a5f0a8831cb51cf5f29376fbfe5d25777"
+  integrity sha512-DRBVCMNG8qHY4XNTDF/SIJKLzaWZUSuPL8EOdg205OZruXiARNXngqzb1m0y+FbWX2513/7RNeXRIs69NxT/fw==
+  dependencies:
+    "@kikko-land/kikko" "^0.2.0"
+    "@kikko-land/migrations-plugin" "^0.2.0"
+    "@kikko-land/react-queries-hooks" "^0.2.0"
+    "@kikko-land/reactive-queries-plugin" "^0.2.0"
+    "@kikko-land/sql" "^0.1.1"
+
+"@kikko-land/reactive-queries-plugin@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kikko-land/reactive-queries-plugin/-/reactive-queries-plugin-0.2.0.tgz#985f9a68a36c164a2f79f02e58f2aa1b46ecef8e"
+  integrity sha512-tuBANhbxWDgN991DW6SHowxJE8ETgd6vtFXrcjfoYrS4a1Y/tVLcOYDaKJ4B7gvDyS+DBy/WNDdnhGFamqAQfQ==
+  dependencies:
+    "@kikko-land/kikko" "^0.2.0"
+    "@kikko-land/query-builder" "^0.1.1"
+    "@kikko-land/sql" "^0.1.1"
+    broadcast-channel "^4.13.0"
+    rxjs "^7.5.5"
+
+"@kikko-land/sql@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@kikko-land/sql/-/sql-0.1.1.tgz#087a77d82c08874f629c6869f5913a0870abc1e2"
+  integrity sha512-5aQs8cNmsupJ6UXBfwWKuOBdjRYy6ZLppucSMbg8DeYUku43tRtKwEC4TJw1UqBQ5gv7Zu6MIwaABapSVCNLmA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1318,68 +1380,6 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
-
-"@trong-orm/core@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/core/-/core-1.1.4.tgz#e7637a9c23718c029c68d09e7895558a0c8dc8ec"
-  integrity sha512-ZTfoN23yIDr7VHjsbGMXMuRMQ8vqlIOs0K4ImmspL/NW2adUwXhEM+4ipjjuAuJDOPsQ7soXPH/pyIH9odsMSA==
-  dependencies:
-    "@trong-orm/query-builder" "^1.1.4"
-    "@trong-orm/sql" "^1.1.4"
-    rxjs "^7.5.5"
-    ts-essentials "^9.1.2"
-
-"@trong-orm/migrations-plugin@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/migrations-plugin/-/migrations-plugin-1.1.4.tgz#df329794ffe5d6dc76a69526adc5d54dc1cdac0f"
-  integrity sha512-p7dP917oGX89dd4tspB6t9tL2h+M1e0th9UfkMUKnAOxSHCkFOvmN4BYvb8p4F3rIlLiXrAMBDT3teEFTbEKmw==
-  dependencies:
-    "@trong-orm/core" "^1.1.4"
-    "@trong-orm/sql" "^1.1.4"
-
-"@trong-orm/query-builder@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/query-builder/-/query-builder-1.1.4.tgz#82887fdf66c95722d5fe79ddfa7f59be9020c0cf"
-  integrity sha512-q71Z+THelpL7QYyFc8x+VmaMJhCFYaRH0H/rvkh71JagseuCOHBxK4kCtZfse+KLPpi8H10MizpEH4aVH7+Fdw==
-  dependencies:
-    "@trong-orm/sql" "^1.1.4"
-
-"@trong-orm/react-queries-hooks@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/react-queries-hooks/-/react-queries-hooks-1.1.4.tgz#420347fe88799dd103e70eaa41ae628647bd0be8"
-  integrity sha512-0U7cSQLFv6e8JNNtxNL2uaFYF02eQrARcVaM6+0fZwyFuvmFfZkj/zC+zGD9YxkXW5DRojF16+lK0s+aiGHtCQ==
-  dependencies:
-    "@trong-orm/core" "^1.1.4"
-    "@trong-orm/reactive-queries-plugin" "^1.1.4"
-    "@trong-orm/sql" "^1.1.4"
-    rxjs "^7.5.5"
-
-"@trong-orm/react@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/react/-/react-1.1.4.tgz#587439f058a33c9dbbae70a43047e12f598623ef"
-  integrity sha512-Fjq0PWWwg+7/iQZMw2/i4K+7RwIOwJBk+IpyZniZtq/BbJ78TwJ0sdK1oYGd1TewTbPaGulFlPveB6gXzYBSZA==
-  dependencies:
-    "@trong-orm/core" "^1.1.4"
-    "@trong-orm/migrations-plugin" "^1.1.4"
-    "@trong-orm/react-queries-hooks" "^1.1.4"
-    "@trong-orm/reactive-queries-plugin" "^1.1.4"
-    "@trong-orm/sql" "^1.1.4"
-
-"@trong-orm/reactive-queries-plugin@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/reactive-queries-plugin/-/reactive-queries-plugin-1.1.4.tgz#f5f33409f64f03d927b793240e578ba0bb24a74c"
-  integrity sha512-EEZfA2fZsY1EEbFemWNM6aKCBaM8LjU+1v9FHWD9/Hqs7C0/OZjJ1Y4kQDkyMfhIMt5Cwd/ncdfSZu25zrHTvQ==
-  dependencies:
-    "@trong-orm/core" "^1.1.4"
-    "@trong-orm/query-builder" "^1.1.4"
-    "@trong-orm/sql" "^1.1.4"
-    broadcast-channel "^4.12.0"
-    rxjs "^7.5.5"
-
-"@trong-orm/sql@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@trong-orm/sql/-/sql-1.1.4.tgz#6d3fce1b83c2639aade1ae280d12b5a687ff32dc"
-  integrity sha512-JYFD+6RCBumn6QAZxG0QnHzAr5O/EfWUwBT8CGqcKpcpjqWsZFxNlaULjQ8Kr6mWAVVtbOahWFluZ8jAh8jp+w==
 
 "@tsconfig/react-native@^2.0.0":
   version "2.0.2"
@@ -2154,14 +2154,14 @@ braces@^3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
-broadcast-channel@^4.12.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/broadcast-channel/-/broadcast-channel-4.13.0.tgz#21387b2602b9e9ec3b97b03bd8a8d2c198352ff6"
-  integrity sha512-fcDr8QNJ4SOb6jyjUNZatVNmcHtSWfW4PFcs4xIEFZAtorKCIFoEYtjIjaQ4c0jrbr/Bl8NIwOWiLSyspoAnEQ==
+broadcast-channel@^4.13.0:
+  version "4.14.0"
+  resolved "https://registry.yarnpkg.com/broadcast-channel/-/broadcast-channel-4.14.0.tgz#cd2ce466128130ec3a93f7c1f1ed01d658575e35"
+  integrity sha512-uNzxOgBQ+boWCRDESLNg3zZWQ3iz/X7j/uD8pAfr4/S7wQerXVvJI/SBKd9J6ckaPt2jil0gq+7l+3b+kuxJYw==
   dependencies:
     "@babel/runtime" "^7.16.0"
     detect-node "^2.1.0"
-    microtime "3.0.0"
+    microtime "3.1.0"
     oblivious-set "1.1.1"
     p-queue "6.6.2"
     rimraf "3.0.2"
@@ -5127,13 +5127,13 @@ micromatch@^4.0.2, micromatch@^4.0.4:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
-microtime@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/microtime/-/microtime-3.0.0.tgz#d140914bde88aa89b4f9fd2a18620b435af0f39b"
-  integrity sha512-SirJr7ZL4ow2iWcb54bekS4aWyBQNVcEDBiwAz9D/sTgY59A+uE8UJU15cp5wyZmPBwg/3zf8lyCJ5NUe1nVlQ==
+microtime@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/microtime/-/microtime-3.1.0.tgz#599a71250e3116c59f0fe5271dae4cc44321869c"
+  integrity sha512-GcjhfC2y/DF2znac8IRwri7+YUIy34QRHz/iZK3bHrh74qrNNOpAJQwiOMnIG+v1J0K4eiqd+RiGzN3F1eofTQ==
   dependencies:
-    node-addon-api "^1.2.0"
-    node-gyp-build "^3.8.0"
+    node-addon-api "^5.0.0"
+    node-gyp-build "^4.4.0"
 
 mime-db@1.52.0, "mime-db@>= 1.43.0 < 2":
   version "1.52.0"
@@ -5246,10 +5246,10 @@ nocache@^3.0.1:
   resolved "https://registry.yarnpkg.com/nocache/-/nocache-3.0.4.tgz#5b37a56ec6e09fc7d401dceaed2eab40c8bfdf79"
   integrity sha512-WDD0bdg9mbq6F4mRxEYcPWwfA1vxd0mrvKOyxI7Xj/atfRHVeutzuWByG//jfm4uPzp0y4Kj051EORCBSQMycw==
 
-node-addon-api@^1.2.0:
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-1.7.2.tgz#3df30b95720b53c24e59948b49532b662444f54d"
-  integrity sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==
+node-addon-api@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-5.0.0.tgz#7d7e6f9ef89043befdb20c1989c905ebde18c501"
+  integrity sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==
 
 node-dir@^0.1.17:
   version "0.1.17"
@@ -5265,10 +5265,10 @@ node-fetch@^2.2.0, node-fetch@^2.6.0:
   dependencies:
     whatwg-url "^5.0.0"
 
-node-gyp-build@^3.8.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-3.9.0.tgz#53a350187dd4d5276750da21605d1cb681d09e25"
-  integrity sha512-zLcTg6P4AbcHPq465ZMFNXx7XpKKJh+7kkN699NiQWisR2uWYOWNWqRHAmbnmKiL4e9aLSlmy5U7rEMUXV59+A==
+node-gyp-build@^4.4.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/node-gyp-build/-/node-gyp-build-4.5.0.tgz#7a64eefa0b21112f89f58379da128ac177f20e40"
+  integrity sha512-2iGbaQBV+ITgCz76ZEjmhUKAKVf7xfY1sRl4UiKQspfZMH2h06SyhNsnSVy50cwkFQDGLyif6m/6uFXHkOZ6rg==
 
 node-int64@^0.4.0:
   version "0.4.0"

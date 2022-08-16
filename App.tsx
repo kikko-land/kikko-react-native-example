@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import {Platform, Text} from 'react-native';
+import {Text} from 'react-native';
 
 import {
   openDatabase,
@@ -17,7 +17,7 @@ import {
   Location,
   SQLiteDatabase,
 } from 'react-native-sqlite-storage';
-import {sql} from '@trong-orm/query-builder';
+import {sql} from '@kikko-land/query-builder';
 import {
   IMigration,
   runQuery,
@@ -29,7 +29,7 @@ import {
   IQueryResult,
   DbProvider,
   EnsureDbLoaded,
-} from '@trong-orm/react';
+} from '@kikko-land/react';
 import {Screen} from './components/Screen';
 
 enablePromise(true);
@@ -124,7 +124,7 @@ const config: IInitDbClientConfig = {
   dbBackend: reactNativeBackend({name: dbName => `${dbName}.db`}),
   plugins: [
     migrationsPlugin({migrations: [createNotesTable]}),
-    reactiveQueriesPlugin({webMultiTabSupport: Platform.OS === 'web'}),
+    reactiveQueriesPlugin(),
   ],
 };
 

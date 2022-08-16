@@ -1,11 +1,17 @@
-import {select, like$, sql, insert, deleteFrom} from '@trong-orm/query-builder';
+import {
+  select,
+  like$,
+  sql,
+  insert,
+  deleteFrom,
+} from '@kikko-land/query-builder';
 import {
   useQuery,
   useQueryFirstRow,
   useRunQuery,
   runQuery,
   makeId,
-} from '@trong-orm/react';
+} from '@kikko-land/react';
 import React, {useState} from 'react';
 import {
   useColorScheme,
